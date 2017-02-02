@@ -1,6 +1,6 @@
 # Dockers, Vagrant and Nodejs
  
- #Synopsys
+##Synopsys
  
  Virtual Machine for develop environment using:
  - Dockers Containers
@@ -11,7 +11,7 @@
  - Nginx
  - Mysql
  
- #Installation 
+##Installation 
 - Install vagrant: using http://vagrantup.com/downloads.html
 - Install the Vagrant Provisioner: Docker Compose
 
@@ -26,3 +26,17 @@ cp /path_of_the_project/docker/docker-compose.yml.example /path_of_the_project/d
 cp /path_of_the_project/app/.env_example /path_of_the_project/app/.env
 ```
 - enjoy your docker virtual machine!!!
+
+##Usage
+
+###Star the Virtual machine 
+```bash
+    vagrant up
+```
+###Connect via SSH 
+```bash
+    vagrant ssh
+```
+
+for more information about docker please visit:
+https://www.docker.com/
