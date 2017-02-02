@@ -1,0 +1,54 @@
+version: '2'
+
+services:
+### Workspace Utilities Container ###########################
+    app:
+        build:
+            context: ../app
+        volumes:
+            - ../app:/var/www
+            #- ./data/node_modules:/var/www/node_modules
+        ports:
+           - "3000:3000"
+### Nginx Container ###########################
+    nginx:
+        restart: always
+        build: ./nginx/
+        ports:
+            - "80:80"
+        volumes:
+            - /www/public
+            - ./data/nginx:/var/log/nginx
+        volumes_from:
+            - app
+        links:
+            - app:app
+### Mysql Container ###########################
+    mysql:
+        build:
+            context: ./mysql
+            args:
+                - MYSQL_DATABASE=nodeapp
+                - MYSQL_USER=nodeapp
+                - MYSQL_PASSWORD=secret
+                - MYSQL_ROOT_PASSWORD=root
+        volumes:
+          - ./data/mysql:/var/lib/mysql
+        ports:
+            - "3306:3306"
+### Mongo Container ###########################
+    mongo:
+        build:
+            context: ./mongo
+        volumes:
+            - ./data/mongo/data:/data/db
+        ports:
+            - "27017:27017"
+### Redis Container ###########################
+#    redis:
+#        build:
+#            context: ./redis
+#        volumes:
+##            - ./data/redis/data:/data
+#        ports:
+#            - "6379:6379"

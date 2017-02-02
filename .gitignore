@@ -1,0 +1,5 @@
+/.vagrant
+/.idea
+/app/.env
+/docker/docker-compose.yml
+/docker/data
